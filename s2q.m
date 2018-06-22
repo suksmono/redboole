@@ -1,6 +1,6 @@
-function val_q= s2q(val_s)
-% transform s={-1,+1} -> q={1,0}
+function val_q= s2q(x)
+% transform s={-1,1}->q={0,1}
 % usage: (1) define symbolic variable x
-%             syms val_s;
-%        (2) fq=s2q(val_s); 
-val_q=(1/2)*(1-val_s);
+%             syms x;
+%        (2) fq=1-2*x; 
+val_q=1-2*x;
