@@ -127,22 +127,22 @@ disp(sprintf('H2s: \n%s', char(expand(H2s))));
 % number of  qubits: q11, ..., q45 => 7*4=28
 NQ=2*3;
 
-%% create lookup tbl for product of s_ij*s_mn
+% create lookup tbl for product of s_ij*s_mn
 sx=[transpose(s(:,1)) transpose(s(:,2)) transpose(s(:,3)) ...
     ];
-%%
+%
 tblook=transpose(sx)*sx;
 Jij=zeros(NQ,NQ); % init Jij: coupling coefficients
 hi=zeros(NQ,1);
 b=0; % bias
-%% fill in b
+% fill in b
 NTERM=length(cx);
 for m=1:NTERM
     if (tx(m)==1) 
         b=cx(m);
     end
 end;
-%% fill in hi
+% fill in hi
 disp(sprintf('calculating hi ...'));
 for m=1:NQ
     tsym=sx(m);
@@ -152,7 +152,7 @@ for m=1:NQ
         end;
     end;
 end;
-%% fill in Jij, we only consider upper diagonal of Jij
+% fill in Jij, we only consider upper diagonal of Jij
 disp(sprintf('calculating Jij ...'));
 for m=1:NQ
     for nn=m+1:NQ
@@ -174,7 +174,7 @@ end;
 % ------------------------------------------------------------
 ITR1=100;%2*10*1000; %set 1 for random init
 vStart=0;
-%% create a vector of [(N-1)x(N-1),1] spin with random {-,+] values
+% create a vector of [(N-1)x(N-1),1] spin with random {-,+] values
 vSpin0=vRandSpin(NQ);
 
 % Etresh= 0;%-2*(4*K-1)*(2*K-1);%N/4; % target energy
@@ -184,7 +184,7 @@ Ptresh=pMCSchedule(maxIter,0.5);
 %-- Ptresh is the schedule
 k=0;
 vSpin=vSpin0;
-% % init energy setting
+% init energy setting
 Ecurr = vEnergyBx(b, hi, Jij,vSpin);
 % NFLIP=N-NO;
 Etresh=0;
